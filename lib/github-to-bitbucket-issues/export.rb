@@ -87,10 +87,7 @@ module GTBI
     private
 
     def download_issues
-      @issues = []
-      %w(open closed).each do |state|
-        @issues += download_all_of("issue", {:state => state})
-      end
+      @issues = download_all_of("issue", {:state => 'all'})
     end
 
     def download_comments
@@ -98,7 +95,7 @@ module GTBI
     end
 
     def download_milestones
-      @milestones = download_all_of("milestone")
+      @milestones = download_all_of("milestone", state: 'all')
     end
 
     def download_all_of(type, options = {})
